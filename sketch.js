@@ -45,10 +45,14 @@ const sketch = ({ context }) => {
   const moonGroup = new THREE.Group()
 
   // Setup material
-  const earthMaterial = new THREE.MeshBasicMaterial({
+  const earthMaterial = new THREE.MeshStandardMaterial({
+    roughness:1,
+    metalness:0,
     map:earthTexture
   });
-  const moonMaterial = new THREE.MeshBasicMaterial({
+  const moonMaterial = new THREE.MeshStandardMaterial({
+    roughness:1,
+    metalness:0,
     map:moonTexture
   });
 
@@ -62,6 +66,12 @@ const sketch = ({ context }) => {
   moonGroup.add(moonMesh)
   scene.add(earthMesh);
   scene.add(moonGroup);
+
+  // Light
+  const light = new THREE.PointLight()
+  light.position.set(-1,2,-1)
+
+  scene.add(light)
 
   // draw each frame
   return {
